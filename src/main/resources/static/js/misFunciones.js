@@ -39,6 +39,11 @@ $.get("/user", function (data) {
     $(".unauthenticated").hide();
     $(".authenticated").show();
 });
-$.get("/user", function (data) {
-    $("#user").html(data.name);
-});
+var logout = function () {
+    $.post("/logout", function () {
+        $("#user").html('');
+        $(".unauthenticated").show();
+        $(".authenticated").hide();
+    });
+    return true;
+};

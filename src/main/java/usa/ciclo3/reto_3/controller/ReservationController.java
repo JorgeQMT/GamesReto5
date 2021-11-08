@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import usa.ciclo3.reto_3.model.CountClient;
-import usa.ciclo3.reto_3.model.StatusAmount;
+import usa.ciclo3.reto_3.reports.CountClient;
+import usa.ciclo3.reto_3.reports.StatusAmount;
 
 /**
  *

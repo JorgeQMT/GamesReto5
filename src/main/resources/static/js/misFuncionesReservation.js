@@ -39,14 +39,19 @@ $.get("/user", function (data) {
     $(".unauthenticated").hide();
     $(".authenticated").show();
 });
-$.get("/user", function (data) {
-    $("#user").html(data.name);
-});
+var logout = function () {
+    $.post("/logout", function () {
+        $("#user").html('');
+        $(".unauthenticated").show();
+        $(".authenticated").hide();
+    });
+    return true;
+};
 
 // Rutina para taer los Clientes a un <select>
 function traerInformacionC(){
     $.ajax({
-        url:"http://localhost:8080/api/Client/all",
+        url:"http://140.238.180.17:8080/api/Client/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuestaC){
@@ -71,7 +76,7 @@ function pintarRespuestaC(respuestaC){
 // Rutina para taer los Juegos a un <select>
 function traerInformacionG(){
     $.ajax({
-        url:"http://localhost:8080/api/Game/all",
+        url:"http://140.238.180.17:8080/api/Game/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuestaG){
@@ -101,7 +106,7 @@ $(document).ready(function (){
 //Funcione que trae la informacion de Reservation
 function traerInformacionReservation(){
     $.ajax({
-        url:"http://localhost:8080/api/Reservation/all",
+        url:"http://140.238.180.17:8080/api/Reservation/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuestaReservation){
@@ -151,7 +156,7 @@ function guardarElementoReservation(){
         contentType: "application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(myData),
-        url:"http://localhost:8080/api/Reservation/save",
+        url:"http://140.238.180.17:8080/api/Reservation/save",
         success:function(response) {
             console.log(response);
             console.log("La Reserva se Guardo Correctamente");
@@ -178,7 +183,7 @@ function actualizarElementoReservation(idElemento){
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://localhost:8080/api/Reservation/update", //colocar la http del modulo de la tabla CLIENT
+        url:"http://140.238.180.17:8080/api/Reservation/update", //colocar la http del modulo de la tabla CLIENT
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
@@ -206,7 +211,7 @@ function borrarElementoReservation(idElemento){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://localhost:8080/api/Reservation/"+idElemento,
+        url:"http://140.238.180.17:8080/api/Reservation/"+idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",

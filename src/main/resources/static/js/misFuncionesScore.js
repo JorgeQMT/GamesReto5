@@ -39,9 +39,14 @@ $.get("/user", function (data) {
     $(".unauthenticated").hide();
     $(".authenticated").show();
 });
-$.get("/user", function (data) {
-    $("#user").html(data.name);
-});
+var logout = function () {
+    $.post("/logout", function () {
+        $("#user").html('');
+        $(".unauthenticated").show();
+        $(".authenticated").hide();
+    });
+    return true;
+};
 
 //Funciones del <select> Reservacion
 $(document).ready(function(){
@@ -51,7 +56,7 @@ $(document).ready(function(){
 // Rutina para taer las Reservacion a un <select>
 function traerInformacionR(){
     $.ajax({
-        url:"http://localhost:8080/api/Reservation/all",
+        url:"http://140.238.180.17:8080/api/Reservation/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuestaR){
@@ -78,7 +83,7 @@ $(document).ready(function(){
 // Rutina para taer las Calificaciones
 function traerInformacionScore(){
     $.ajax({
-        url:"http://localhost:8080/api/Score/all",
+        url:"http://140.238.180.17:8080/api/Score/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuestaScore){
@@ -125,7 +130,7 @@ function guardarElementoScore(){
         contentType: "application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(myData),
-        url:"http://localhost:8080/api/Score/save",
+        url:"http://140.238.180.17:8080/api/Score/save",
         success:function(response) {
             console.log(response);
             console.log("La Calificacion se Guardo Correctamente");

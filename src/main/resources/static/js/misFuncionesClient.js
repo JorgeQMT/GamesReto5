@@ -38,9 +38,14 @@ $.get("/user", function (data) {
     $(".unauthenticated").hide();
     $(".authenticated").show();
 });
-$.get("/user", function (data) {
-    $("#user").html(data.name);
-});
+var logout = function () {
+    $.post("/logout", function () {
+        $("#user").html('');
+        $(".unauthenticated").show();
+        $(".authenticated").hide();
+    });
+    return true;
+};
 
 //Funciones de la tabla CLiente
 $(document).ready(function (){
@@ -50,7 +55,7 @@ $(document).ready(function (){
 //Funcione que trae la informacion de Client
 function traerInformacionClientes(){
     $.ajax({
-        url:"http://localhost:8080/api/Client/all", //colocar la http del modulo de la tabla CLIENT
+        url:"http://140.238.180.17:8080/api/Client/all", //colocar la http del modulo de la tabla CLIENT
         type:"GET",
         datatype:"JSON",
         success:function(respuestaC){
@@ -89,7 +94,7 @@ function guardarElementoClient(){
         contentType: "application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(myDataC),
-        url:"http://localhost:8080/api/Client/save",
+        url:"http://140.238.180.17:8080/api/Client/save",
         success:function(responseC) {
             console.log(responseC);
             console.log("Se guardo correctamente");
@@ -114,7 +119,7 @@ function actualizarElementoClient(idElementoC){
     console.log(myDataC);
     let dataToSend=JSON.stringify(myDataC);
     $.ajax({
-        url:"http://localhost:8080/api/Client/update", //colocar la http del modulo de la tabla CLIENT
+        url:"http://140.238.180.17:8080/api/Client/update", //colocar la http del modulo de la tabla CLIENT
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
@@ -141,7 +146,7 @@ function borrarElementoClient(idElementoC){
     };
     let dataToSend=JSON.stringify(myDataC);
     $.ajax({
-        url:"http://localhost:8080/api/Client/"+idElementoC,
+        url:"http://140.238.180.17:8080/api/Client/"+idElementoC,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",

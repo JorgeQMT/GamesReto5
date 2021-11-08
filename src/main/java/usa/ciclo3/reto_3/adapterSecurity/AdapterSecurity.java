@@ -1,6 +1,8 @@
 
 package usa.ciclo3.reto_3.adapterSecurity;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,15 +15,18 @@ public class AdapterSecurity extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests(a -> a
-    .antMatchers("/", "/error", "/webjars/**","/api/**","/h2-console/**","/Admin/**","/Category**","/Client/**","/Game/**","/HomePage/**","/Index/**","/Message/**","/Report/**","/Reservation/**").permitAll().anyRequest().authenticated()
-                
+        http.authorizeRequests(a -> {
+            try {
+                a.antMatchers("/", "/error", "/webjars/**", "/api/**").permitAll().anyRequest().authenticated().and().logout().logoutSuccessUrl("/").permitAll();
+            } catch (Exception ex) {
+                Logger.getLogger(AdapterSecurity.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         ).exceptionHandling(e -> e
                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
-        ).oauth2Login().defaultSuccessUrl("/HomePage.html", true);
+        ).oauth2Login().defaultSuccessUrl("/", true);
 
         http.cors().and().csrf().disable();
 
     }
-
 }

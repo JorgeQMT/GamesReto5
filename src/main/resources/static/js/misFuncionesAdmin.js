@@ -39,9 +39,14 @@ $.get("/user", function (data) {
     $(".unauthenticated").hide();
     $(".authenticated").show();
 });
-$.get("/user", function (data) {
-    $("#user").html(data.name);
-});
+var logout = function () {
+    $.post("/logout", function () {
+        $("#user").html('');
+        $(".unauthenticated").show();
+        $(".authenticated").hide();
+    });
+    return true;
+};
 
 //Funciones de la tabla Administrador
 $(document).ready(function (){
@@ -51,7 +56,7 @@ $(document).ready(function (){
 //Funcion que trae la informacion de la tabla Administrador
 function traerInformacionAdmin(){
     $.ajax({
-        url:"http://localhost:8080/api/Admin/all", //colocar la http del modulo de la tabla CLIENT
+        url:"http://140.238.180.17:8080/api/Admin/all", //colocar la http del modulo de la tabla CLIENT
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -89,7 +94,7 @@ function guardarElementoAdmin(){
         dataType: 'JSON',
         data: JSON.stringify(myData),
         
-        url:"http://localhost:8080/api/Admin/save",
+        url:"http://140.238.180.17:8080/api/Admin/save",
        
         
         success:function(response) {
@@ -119,7 +124,7 @@ function actualizarElementoAdmin(idElemento){
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://localhost:8080/api/Admin/update", //colocar la http del modulo de la tabla CLIENT
+        url:"http://140.238.180.17:8080/api/Admin/update", //colocar la http del modulo de la tabla CLIENT
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
@@ -146,7 +151,7 @@ function borrarElementoAdmin(idElemento){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://localhost:8080/api/Admin/"+idElemento,
+        url:"http://140.238.180.17:8080/api/Admin/"+idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",

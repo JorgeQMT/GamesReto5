@@ -7,8 +7,8 @@ package usa.ciclo3.reto_3.service;
 
 import usa.ciclo3.reto_3.model.Reservation;
 import usa.ciclo3.reto_3.repository.ReservationRepository;
-import usa.ciclo3.reto_3.model.CountClient;
-import usa.ciclo3.reto_3.model.StatusAmount;
+import usa.ciclo3.reto_3.reports.CountClient;
+import usa.ciclo3.reto_3.reports.StatusAmount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

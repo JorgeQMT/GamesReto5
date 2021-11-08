@@ -13,7 +13,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import usa.ciclo3.reto_3.model.Client;
-import usa.ciclo3.reto_3.model.CountClient;
+import usa.ciclo3.reto_3.reports.CountClient;
 
 /**
  *

@@ -39,14 +39,19 @@ $.get("/user", function (data) {
     $(".unauthenticated").hide();
     $(".authenticated").show();
 });
-$.get("/user", function (data) {
-    $("#user").html(data.name);
-});
+var logout = function () {
+    $.post("/logout", function () {
+        $("#user").html('');
+        $(".unauthenticated").show();
+        $(".authenticated").hide();
+    });
+    return true;
+};
 
 //Funcion para traer la informacion del reporte por status
 function traerInformacionReporteStatus(){
     $.ajax({
-        url:"http://localhost:8080/api/Reservation/report-status",
+        url:"http://140.238.180.17:8080/api/Reservation/report-status",
         type:"GET",
         datatype:"JSON",
         success:function(respuestaRpS){
@@ -74,7 +79,7 @@ function traerInformacionReporteFechas() {
     var finalDate = document.getElementById("finalDate").value;
 
     $.ajax({
-        url: "http://localhost:8080/api/Reservation/report-dates/" + inicialDate + "/" + finalDate,
+        url: "http://140.238.180.17:8080/api/Reservation/report-dates/" + inicialDate + "/" + finalDate,
         type: "GET",
         datatype: "JSON",
         success: function (respuestaRpF) {
@@ -87,12 +92,13 @@ function traerInformacionReporteFechas() {
 
 //Funcion para pintar la informacion del reporte entre fechas
 function pintarRespuestaReporteFechas(respuestaRpF){
-    let myTable="<h3>Entre Fechas</h3><table><thead><th>Fecha Inicio</th><th>Fecha Fin</th><th>Estado</th></thead>";
+    let myTable="<h3>Entre Fechas</h3><table><thead><th>Fecha Inicio</th><th>Fecha Fin</th><th>Estado</th><th>Cliente</th></thead>";
     for(i=0; i<respuestaRpF.length; i++){
         myTable += `<tr>
         <td>${respuestaRpF[i].startDate.substring(0, 10)}</td>
         <td>${respuestaRpF[i].devolutionDate.substring(0, 10)}</td> 
         <td>${respuestaRpF[i].status}</td>
+        <td>${respuestaRpF[i].client.name}</td>
         </tr>`;
     }
     myTable+="</table>";
@@ -102,7 +108,7 @@ function pintarRespuestaReporteFechas(respuestaRpF){
 //Funcion para traer la informacion del reporte entre clientes
 function traerInformacionReporteClient(){
     $.ajax({
-        url:"http://localhost:8080/api/Reservation/report-clients", //colocar la http del modulo de la tabla CLIENT
+        url:"http://140.238.180.17:8080/api/Reservation/report-clients", //colocar la http del modulo de la tabla CLIENT
         type:"GET",
         datatype:"JSON",
         success:function(respuestaRpC){

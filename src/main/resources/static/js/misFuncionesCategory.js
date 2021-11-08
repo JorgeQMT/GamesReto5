@@ -39,9 +39,14 @@ $.get("/user", function (data) {
     $(".unauthenticated").hide();
     $(".authenticated").show();
 });
-$.get("/user", function (data) {
-    $("#user").html(data.name);
-});
+var logout = function () {
+    $.post("/logout", function () {
+        $("#user").html('');
+        $(".unauthenticated").show();
+        $(".authenticated").hide();
+    });
+    return true;
+};
 
 //Funciones de la tabla Category
 $(document).ready(function (){
@@ -51,7 +56,7 @@ $(document).ready(function (){
 //Funcione que trae la informacion de Category
 function traerInformacionCategory(){
     $.ajax({
-        url:"http://localhost:8080/api/Category/all",
+        url:"http://140.238.180.17:8080/api/Category/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuestaCategory){
@@ -79,7 +84,7 @@ function pintarRespuestaCategory(respuestaCategory){
 function guardarElementoCategory(){
     let myData={
         name:$("#nameCategory").val(),
-        description:$("#description").val(),
+        description:$("#description").val()
     };
     console.log(myData);
     $.ajax({
@@ -87,15 +92,15 @@ function guardarElementoCategory(){
         contentType: "application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(myData),
-        url:"http://localhost:8080/api/Category/save",
+        url:"http://140.238.180.17:8080/api/Category/save",
         success:function(response) {
             console.log(response);
             console.log("La Categoria se Guardo Correctamente");
             alert("La Categoria se Guardo Correctamente");
-            window.location.reload()
+            window.location.reload();
         },
         error: function(jqXHR, textStatus, errorThrown) {
-              window.location.reload()
+              window.location.reload();
             alert("La Categoria no se Guardo Correctamente");
         }
     });
@@ -110,7 +115,7 @@ function actualizarElementoCategory(idElemento){
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://localhost:8080/api/Category/update", //colocar la http del modulo de la tabla CLIENT
+        url:"http://140.238.180.17:8080/api/Category/update", //colocar la http del modulo de la tabla CLIENT
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
@@ -121,7 +126,7 @@ function actualizarElementoCategory(idElemento){
             $("#nameCategory").val("");
             $("#description").val("");
             traerInformacionCategory();
-            alert("Categoria Actualizada con Exito")            
+            alert("Categoria Actualizada con Exito");           
         }
     });
 }
@@ -132,7 +137,7 @@ function borrarElementoCategory(idElemento){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://localhost:8080/api/Category/"+idElemento,
+        url:"http://140.238.180.17:8080/api/Category/"+idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",
@@ -140,7 +145,7 @@ function borrarElementoCategory(idElemento){
         success:function(respuesta){
             $("#resultadoCategory").empty();
             traerInformacionCategory();
-            alert("Categoria Eliminada con Exito.")
+            alert("Categoria Eliminada con Exito.");
         }
     });
 }
