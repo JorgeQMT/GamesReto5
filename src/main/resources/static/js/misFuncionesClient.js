@@ -55,7 +55,7 @@ $(document).ready(function (){
 //Funcione que trae la informacion de Client
 function traerInformacionClientes(){
     $.ajax({
-        url:"http://140.238.180.17:8080/api/Client/all", //colocar la http del modulo de la tabla CLIENT
+        url:"http://152.70.216.16:8080/api/Client/all", //colocar la http del modulo de la tabla CLIENT
         type:"GET",
         datatype:"JSON",
         success:function(respuestaC){
@@ -94,7 +94,7 @@ function guardarElementoClient(){
         contentType: "application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(myDataC),
-        url:"http://140.238.180.17:8080/api/Client/save",
+        url:"http://152.70.216.16:8080/api/Client/save",
         success:function(responseC) {
             console.log(responseC);
             console.log("Se guardo correctamente");
@@ -119,7 +119,7 @@ function actualizarElementoClient(idElementoC){
     console.log(myDataC);
     let dataToSend=JSON.stringify(myDataC);
     $.ajax({
-        url:"http://140.238.180.17:8080/api/Client/update", //colocar la http del modulo de la tabla CLIENT
+        url:"http://152.70.216.16:8080/api/Client/update", //colocar la http del modulo de la tabla CLIENT
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
@@ -146,7 +146,7 @@ function borrarElementoClient(idElementoC){
     };
     let dataToSend=JSON.stringify(myDataC);
     $.ajax({
-        url:"http://140.238.180.17:8080/api/Client/"+idElementoC,
+        url:"http://152.70.216.16:8080/api/Client/"+idElementoC,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",

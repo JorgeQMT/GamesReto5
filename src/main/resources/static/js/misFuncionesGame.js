@@ -51,7 +51,7 @@ var logout = function () {
 // Rutina para taer las categorias a un <select>
 function traerInformacionC(){
     $.ajax({
-        url:"http://140.238.180.17:8080/api/Category/all",
+        url:"http://152.70.216.16:8080/api/Category/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuestaC){
@@ -81,7 +81,7 @@ $(document).ready(function (){
 //Funcione que trae la informacion de game
 function traerInformacionGame(){
     $.ajax({
-        url:"http://140.238.180.17:8080/api/Game/all",
+        url:"http://152.70.216.16:8080/api/Game/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuestaGame){
@@ -125,7 +125,7 @@ function guardarElementoGame(){
         contentType: "application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(myData),
-        url:"http://140.238.180.17:8080/api/Game/save",
+        url:"http://152.70.216.16:8080/api/Game/save",
         success:function(response) {
             console.log(response);
             console.log("El Juego se Guardo Correctamente");
@@ -151,7 +151,7 @@ function actualizarElementoGame(idElemento){
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://140.238.180.17:8080/api/Game/update", //colocar la http del modulo de la tabla CLIENT
+        url:"http://152.70.216.16:8080/api/Game/update", //colocar la http del modulo de la tabla CLIENT
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
@@ -175,7 +175,7 @@ function borrarElementoGame(idElemento){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://140.238.180.17:8080/api/Game/"+idElemento,
+        url:"http://152.70.216.16:8080/api/Game/"+idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",

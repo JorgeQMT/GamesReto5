@@ -52,7 +52,7 @@ var logout = function () {
 // Rutina para taer las Clientes a un <select>
 function traerInformacionC(){
     $.ajax({
-        url:"http://140.238.180.17:8080/api/Client/all",
+        url:"http://152.70.216.16:8080/api/Client/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuestaC){
@@ -77,7 +77,7 @@ function pintarRespuestaC(respuestaC){
 // Rutina para taer los Juegos a un <select>
 function traerInformacionG(){
     $.ajax({
-        url:"http://140.238.180.17:8080/api/Game/all",
+        url:"http://152.70.216.16:8080/api/Game/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuestaG){
@@ -107,7 +107,7 @@ $(document).ready(function (){
 //Funcione que trae la informacion de Message
 function traerInformacionMessage(){
     $.ajax({
-        url:"http://140.238.180.17:8080/api/Message/all",
+        url:"http://152.70.216.16:8080/api/Message/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuestaMessage){
@@ -147,7 +147,7 @@ function guardarElementoMessage(){
         contentType: "application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(myData),
-        url:"http://140.238.180.17:8080/api/Message/save",
+        url:"http://152.70.216.16:8080/api/Message/save",
         success:function(response) {
             console.log(response);
             console.log("El Mensaje se Guardo Correctamente");
@@ -172,7 +172,7 @@ function actualizarElementoMessage(idElemento){
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://140.238.180.17:8080/api/Message/update", //colocar la http del modulo de la tabla CLIENT
+        url:"http://152.70.216.16:8080/api/Message/update", //colocar la http del modulo de la tabla CLIENT
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
@@ -195,7 +195,7 @@ function borrarElementoMessage(idElemento){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://140.238.180.17:8080/api/Message/"+idElemento,
+        url:"http://152.70.216.16:8080/api/Message/"+idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",

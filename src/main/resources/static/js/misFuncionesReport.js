@@ -51,7 +51,7 @@ var logout = function () {
 //Funcion para traer la informacion del reporte por status
 function traerInformacionReporteStatus(){
     $.ajax({
-        url:"http://140.238.180.17:8080/api/Reservation/report-status",
+        url:"http://152.70.216.16:8080/api/Reservation/report-status",
         type:"GET",
         datatype:"JSON",
         success:function(respuestaRpS){
@@ -79,7 +79,7 @@ function traerInformacionReporteFechas() {
     var finalDate = document.getElementById("finalDate").value;
 
     $.ajax({
-        url: "http://140.238.180.17:8080/api/Reservation/report-dates/" + inicialDate + "/" + finalDate,
+        url: "http://152.70.216.16:8080/api/Reservation/report-dates/" + inicialDate + "/" + finalDate,
         type: "GET",
         datatype: "JSON",
         success: function (respuestaRpF) {
@@ -108,7 +108,7 @@ function pintarRespuestaReporteFechas(respuestaRpF){
 //Funcion para traer la informacion del reporte entre clientes
 function traerInformacionReporteClient(){
     $.ajax({
-        url:"http://140.238.180.17:8080/api/Reservation/report-clients", //colocar la http del modulo de la tabla CLIENT
+        url:"http://152.70.216.16:8080/api/Reservation/report-clients", //colocar la http del modulo de la tabla CLIENT
         type:"GET",
         datatype:"JSON",
         success:function(respuestaRpC){

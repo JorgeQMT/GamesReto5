@@ -56,7 +56,7 @@ $(document).ready(function(){
 // Rutina para taer las Reservacion a un <select>
 function traerInformacionR(){
     $.ajax({
-        url:"http://140.238.180.17:8080/api/Reservation/all",
+        url:"http://152.70.216.16:8080/api/Reservation/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuestaR){
@@ -83,7 +83,7 @@ $(document).ready(function(){
 // Rutina para taer las Calificaciones
 function traerInformacionScore(){
     $.ajax({
-        url:"http://140.238.180.17:8080/api/Score/all",
+        url:"http://152.70.216.16:8080/api/Score/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuestaScore){
@@ -130,7 +130,7 @@ function guardarElementoScore(){
         contentType: "application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(myData),
-        url:"http://140.238.180.17:8080/api/Score/save",
+        url:"http://152.70.216.16:8080/api/Score/save",
         success:function(response) {
             console.log(response);
             console.log("La Calificacion se Guardo Correctamente");
