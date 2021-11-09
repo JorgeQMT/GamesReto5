@@ -21,13 +21,12 @@ import javax.persistence.Table;
 
 /**
  *
- * @author SISTEMAS
+ * @author Jorge Quesada
  */
 @Entity
 @Table(name="games")
 @JsonPropertyOrder({"id", "name", "developer", "year", "description", "category", "messages", "reservations"})
 public class Game implements Serializable{
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -35,16 +34,25 @@ public class Game implements Serializable{
     private String developer;
     private Integer year;
     private String description;
-            
+    
+    /**
+     *  Relacion muchos a uno de la tabla category a game.
+     */ 
     @ManyToOne
     @JoinColumn(name= "categoryId")
     @JsonIgnoreProperties("games")
     private Category category;
 
+    /**
+     *  Relacion uno a muchos de la tabla game a messages.
+     */ 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "game")
     @JsonIgnoreProperties({"game", "client"})
     public List<Message> messages;
     
+    /**
+     *  Relacion uno a muchos de la tabla game a reservation.
+     */
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "game")
     @JsonIgnoreProperties("game")
     public List<Reservation> reservations;
@@ -92,11 +100,11 @@ public class Game implements Serializable{
     public Category getCategory() {
         return category;
     }
-
+    
     public void setCategory(Category category) {
         this.category = category;
     }
-
+    
     public List<Message> getMessages() {
         return messages;
     }
@@ -111,7 +119,5 @@ public class Game implements Serializable{
 
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
-    }
-    
-    
+    }  
 }

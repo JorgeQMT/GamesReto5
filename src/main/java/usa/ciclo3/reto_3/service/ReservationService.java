@@ -29,19 +29,32 @@ public class ReservationService {
     @Autowired
     private ReservationRepository reservationRepository;
     
-    //Metodo get de todas las Reservation
+    /**
+    * Metodo para obtener todas las category.
+    * @return 
+    */
     public List<Reservation> getAll(){
         return reservationRepository.getAll();
     }
     
-    //Metodo get de todas las Reservation por id
+    /**
+    *  Metodo para obtener todas las reservation.
+    * @param id
+    * @return 
+    */
     public Optional<Reservation> getReservation(int id){
         return reservationRepository.getReservation(id);
     }
     
-    //Metodo  que guarda una Reservation
+    /**
+    * Metodo que guarda una reservation.
+    * @param reservation
+    * @return 
+    */
     public Reservation save(Reservation reservation){
-        //sentencia if de guardar Reservation
+        /**
+        * Sentencia if de guardar Reservation.
+        */
         if(reservation.getIdReservation()== null){
             return reservationRepository.save(reservation);
         }else { 
@@ -54,9 +67,15 @@ public class ReservationService {
         }  
     }
     
-    //Metodo  que actualiza una Reservation
+    /**
+    * Metodo que guarda una reservation.
+    * @param reservation
+    * @return 
+    */
     public Reservation update(Reservation reservation){
-        //sentencia if de actualizar Reservation
+        /**
+        * Sentencia if de actualizar Reservation.
+        */
         if(reservation.getIdReservation()!= null){
             Optional<Reservation> raux=reservationRepository.getReservation(reservation.getIdReservation());
             if (!raux.isEmpty()) {
@@ -79,7 +98,11 @@ public class ReservationService {
         }
     }
     
-    //Metodo  que borra una Reservation
+    /**
+    * Metodo  que borra una Reservation
+    * @param idReservation
+    * @return 
+    */
     public boolean deleteReservatio(int idReservation){
         Boolean aBoolean = getReservation(idReservation).map(reservation ->{
             reservationRepository.delete(reservation);
@@ -88,12 +111,18 @@ public class ReservationService {
         return aBoolean;
     }
     
-    //Metodo que optiene el reporte del top de clientes
+    /**
+    * Metodo que optiene el reporte del top de clientes
+    * @return 
+    */
     public List<CountClient> getTopClient(){
         return reservationRepository.getTopClients(); 
     }
     
-    //Metodo que optiene el reporte por estado 
+    /**
+    * Metodo que optiene el reporte por estado 
+    * @return 
+    */
     public StatusAmount getStatusReport(){
         List<Reservation> completed=reservationRepository.getReservationsByClient("completed");
         List<Reservation> cancelled=reservationRepository.getReservationsByClient("cancelled");
@@ -102,7 +131,12 @@ public class ReservationService {
        return StaAmt;
     }
     
-    //Metodo que optiene el reprote por preriodo entre fechas
+    /**
+    * Metodo que optiene el reprote por preriodo entre fechas 
+     * @param d1
+     * @param d2
+    * @return 
+    */
     public List<Reservation> getReservationPeriod(String d1, String d2){
         
         SimpleDateFormat parser=new SimpleDateFormat("yyyy-MM-dd");
